@@ -12,6 +12,8 @@ jobs:
         run: echo -e $GOOGLE_APPLICATION_CREDENTIALS > service-account.json
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      - name: 'Look at service account key b/c wtf'
+        run: cat service-account.json
       - name: 'Terraform Format'
         uses: hashicorp/terraform-github-actions@master
         with:
