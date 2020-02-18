@@ -2,8 +2,6 @@ name: 'Terraform GitHub Actions'
 on:
   - pull_request
 env:
-  ARTIFACT_BUCKET: tf-artifacts
-  SA_EMAIL: terraform@durable-footing-243118.iam.gserviceaccount.com
 jobs:
   terraform:
     name: 'Terraform'
@@ -39,26 +37,4 @@ jobs:
           tf_actions_subcommand: 'plan'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TF_VAR_service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-      - name: 'Build artifact'
-        uses: actions/upload-artifact@v1
-        with:
-          name: build_artifact.zip
-          path: .
-  google-cloud-storage:
-    name: Upload to Google Cloud Storage
-    needs: terraform
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download build artifact from previous job
-        uses: actions/download-artifact@v1
-        with:
-          name: build_artifact.zip
-      - name: Setup gcloud
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
-        with:
-          version: '278.0.0'
-          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-      - name: Upload build artifact to GCS
-        run: |
-          gsutil cp build_artifact.zip gs://gs://$ARTIFACT_BUCKET/
+          TF_VAR_credentials: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}

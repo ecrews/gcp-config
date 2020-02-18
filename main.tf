@@ -1,3 +1,17 @@
+terraform {
+  backend "gcs" {
+    bucket = "tf-state"
+    prefix = "terraform/state"
+  }
+}
+
+provider "google" {
+  credentials = var.credentials
+  project     = var.project
+  region      = var.region
+  version     = "~> 3.8"
+}
+
 resource "google_container_cluster" "primary" {
   name     = "my-gke-cluster"
   location = var.region

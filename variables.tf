@@ -8,6 +8,6 @@ variable "region" {
   type    = string
 }
 
-variable "service_account_key" {
+variable "credentials" {
   type = string
 }
