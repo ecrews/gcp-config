@@ -37,3 +37,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TF_VAR_service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+      - name: 'Build artifact'
+        uses: actions/upload-artifact@v1
+        with:
+          name: build-artifact
+          path: .
