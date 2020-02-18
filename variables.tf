@@ -7,7 +7,3 @@ variable "region" {
   default = "us-central1"
   type    = string
 }
-
-variable "service_account_key" {
-  type = string
-}

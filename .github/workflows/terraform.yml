@@ -1,6 +1,11 @@
 name: 'Terraform GitHub Actions'
 on:
-  - pull_request
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
 jobs:
   terraform:
     name: 'Terraform'
@@ -8,6 +13,10 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@master
+      - name: 'Write service account key to file'
+        run: echo "${GOOGLE_APPLICATION_CREDENTIALS}" > service-account.json
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - name: 'Terraform Format'
         uses: hashicorp/terraform-github-actions@master
         with:
@@ -36,9 +45,11 @@ jobs:
           tf_actions_subcommand: 'plan'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TF_VAR_service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-      - name: 'Build artifact'
-        uses: actions/upload-artifact@v1
+      - name: 'Terraform Apply'
+        if: github.event_name == 'push'
+        uses: hashicorp/terraform-github-actions@master
         with:
-          name: build_artifact.zip
-          path: .
+          tf_actions_version: 0.12.13
+          tf_actions_subcommand: 'apply'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,3 +1,18 @@
+terraform {
+  backend "gcs" {
+    bucket      = "durable-footing-243118-tf-state"
+    credentials = "service-account.json"
+    prefix      = "terraform/state"
+  }
+}
+
+provider "google" {
+  credentials = file("service-account.json")
+  project     = var.project
+  region      = var.region
+  version     = "~> 3.8"
+}
+
 resource "google_container_cluster" "primary" {
   name     = "my-gke-cluster"
   location = var.region
