@@ -10,6 +10,8 @@ jobs:
         uses: actions/checkout@master
       - name: 'Write service account key to file'
         run: cat $GOOGLE_APPLICATION_CREDENTIALS >> service-account.json
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - name: 'Terraform Format'
         uses: hashicorp/terraform-github-actions@master
         with:
