@@ -39,7 +39,7 @@ jobs:
           tf_actions_subcommand: 'plan'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TF_VAR_service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          TF_VAR_service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - name: 'Build artifact'
         uses: actions/upload-artifact@v1
         with:
@@ -59,7 +59,7 @@ jobs:
         with:
           version: '278.0.0'
           service_account_email: $SA_EMAIL
-          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - name: Upload build artifact to GCS
         run: |
           gsutil cp build_artifact.zip gs://gs://$ARTIFACT_BUCKET/
