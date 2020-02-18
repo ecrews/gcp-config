@@ -4,4 +4,3 @@ provider "google" {
   region      = "us-central1"
   version     = "~> 3.8"
 }
-
