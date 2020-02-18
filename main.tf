@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket      = "${var.project}-tf-state"
+    bucket      = "durable-footing-243118-tf-state"
     credentials = "service-account.json"
     prefix      = "terraform/state"
   }
