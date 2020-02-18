@@ -5,8 +5,6 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    env:
-      TF_IN_AUTOMATION: true
     steps:
       - name: 'Checkout'
         uses: actions/checkout@master
