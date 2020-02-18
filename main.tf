@@ -1,13 +1,13 @@
 terraform {
   backend "gcs" {
-    credentials = var.credentials
     bucket      = "tf-state"
+    credentials = file("service-account.json")
     prefix      = "terraform/state"
   }
 }
 
 provider "google" {
-  credentials = var.credentials
+  credentials = file("service-account.json")
   project     = var.project
   region      = var.region
   version     = "~> 3.8"

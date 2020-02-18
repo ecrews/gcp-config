@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@master
+      - name: 'Write service account key to file'
+        run: cat $GOOGLE_APPLICATION_CREDENTIALS >> service-account.json
       - name: 'Terraform Format'
         uses: hashicorp/terraform-github-actions@master
         with:
@@ -36,4 +38,3 @@ jobs:
           tf_actions_subcommand: 'plan'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TF_VAR_credentials: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
