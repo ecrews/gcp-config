@@ -1,6 +1,6 @@
 provider "google" {
-  credentials = file("account.json")
-  project     = "my-project-id"
-  region      = "us-central1"
+  credentials = var.service_account_key
+  project     = var.project
+  region      = var.region
   version     = "~> 3.8"
 }
