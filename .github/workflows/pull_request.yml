@@ -58,7 +58,6 @@ jobs:
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
           version: '278.0.0'
-          service_account_email: $SA_EMAIL
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       - name: Upload build artifact to GCS
         run: |
