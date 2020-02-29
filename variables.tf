@@ -1,9 +1,17 @@
+variable "node_pool" {
+  type = object({
+    node_count = number
+    node_config = object({
+      preemptible  = bool
+      machine_type = string
+    })
+  })
+}
+
 variable "project" {
-  default = "durable-footing-243118"
-  type    = string
+  type = string
 }
 
 variable "region" {
-  default = "us-central1"
-  type    = string
+  type = string
 }
