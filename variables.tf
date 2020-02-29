@@ -1,8 +1,4 @@
-variable "google_container_cluster" {
-  type = map
-}
-
-variable "google_container_node_pool" {
+variable "node_pool" {
   type = map
 }
 
