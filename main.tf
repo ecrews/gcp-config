@@ -34,14 +34,14 @@ resource "google_container_cluster" "primary" {
 }
 
 resource "google_container_node_pool" "primary_preemptible_nodes" {
-  name       = "my-node-pool"
+  name       = "primary"
   location   = var.region
   cluster    = google_container_cluster.primary.name
-  node_count = 0
+  node_count = var.node_pool.node_count
 
   node_config {
-    preemptible  = true
-    machine_type = "n1-standard-1"
+    preemptible  = var.node_pool.node_config.preemptible
+    machine_type = var.node_pool.node_config.machine_type
 
     metadata = {
       disable-legacy-endpoints = "true"

@@ -1,9 +1,15 @@
+variable "google_container_cluster" {
+  type = map
+}
+
+variable "google_container_node_pool" {
+  type = map
+}
+
 variable "project" {
-  default = "durable-footing-243118"
-  type    = string
+  type = string
 }
 
 variable "region" {
-  default = "us-central1"
-  type    = string
+  type = string
 }
