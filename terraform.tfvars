@@ -1,6 +1,6 @@
 project = "durable-footing-243118"
 
-region  = "us-central1"
+region = "us-central1"
 
 node_pool = {
   node_count = 1
