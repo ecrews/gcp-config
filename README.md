@@ -2,6 +2,6 @@
 
 # sws-tf-configs
 
-> Terraform configuration for my GKE cluster.
+Terraform configuration for my GKE cluster.
 
 ![Terraform GitHub Actions](https://github.com/ecrews/sws-tf-configs/workflows/Terraform%20GitHub%20Actions/badge.svg)
